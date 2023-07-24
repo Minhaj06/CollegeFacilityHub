@@ -96,8 +96,8 @@ const Header = () => {
           </ul>
         </div>
         <NavLink to={`/`} className="font-bold normal-case text-3xl">
-          <span className="text-primary">L</span>
-          Mastery
+          <span className="text-primary">College</span>
+          Hub
         </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex">
