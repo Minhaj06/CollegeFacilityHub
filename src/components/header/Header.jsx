@@ -4,7 +4,7 @@ import { BsFillSunFill, BsFillMoonStarsFill } from "react-icons/bs";
 import { RxAvatar } from "react-icons/rx";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../context/auth";
-import axios from "axios";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const Header = () => {
   const pagesArray = [
@@ -119,7 +119,9 @@ const Header = () => {
               className="input input-bordered"
               placeholder="Search College"
             />
-            <span className="dark:bg-slate-800">BTC</span>
+            <span className="dark:bg-slate-800 cursor-pointer">
+              <AiOutlineSearch size={22} />
+            </span>
           </label>
         </div>
         <div className="dropdown dropdown-end">

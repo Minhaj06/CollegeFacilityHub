@@ -9,6 +9,7 @@ import MainLayout from "../layout/MainLayout";
 import CollegesPage from "../pages/collegesPage/CollegesPage";
 import CollegeDetailsPage from "../pages/collegeDetailsPage/CollegeDetailsPage";
 import AdmissionPage from "../pages/admissionPage/AdmissionPage";
+import MyCollege from "../pages/myCollege/MyCollege";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AdmissionPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-college",
+        element: (
+          <PrivateRoute>
+            <MyCollege />
           </PrivateRoute>
         ),
       },

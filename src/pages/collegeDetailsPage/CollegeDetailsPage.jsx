@@ -7,7 +7,7 @@ const CollegeDetailsPage = () => {
 
   return (
     <section className="py-20 bg-slate-200 dark:bg-gray-800">
-      <div className="container mx-auto px-4">
+      <div className="container">
         <PageHeading heading={college?.name} subheading={`Rating: ${college?.rating}`} />
         <div className="flex justify-center">
           <img
