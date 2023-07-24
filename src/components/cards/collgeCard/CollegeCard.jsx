@@ -31,7 +31,7 @@ const CollegeCard = ({ college }) => {
             <FaGraduationCap className="inline mr-2" />
             Research History:
           </span>{" "}
-          {/* {college.researchHistory} */}
+          {college.researchHistory}
         </div>
         <div>
           <span className="text-gray-500">
