@@ -1,10 +1,10 @@
 import React from "react";
 import Title from "../../components/title/Title";
 import HomeBannerSlider from "../../components/home/HomeBannerSlider";
-// import PopularClassesSection from "../../components/home/PopularClassesSection";
-// import PopularInstructorsSection from "../../components/home/PopularInstructorsSection";
-// import TestimonialsSection from "../../components/home/TestimonialsSection";
 import CollegeSection from "../../components/home/CollegeSection";
+import CollegeGallerySection from "../../components/home/CollegeGallerySection";
+import ResearchPapersSection from "../../components/home/ResearchPapersSection";
+import ReviewSection from "../../components/home/ReviewSection";
 
 const HomePage = () => {
   return (
@@ -12,10 +12,9 @@ const HomePage = () => {
       <Title />
       <HomeBannerSlider />
       <CollegeSection />
-
-      {/* <PopularClassesSection />
-      <PopularInstructorsSection />
-      <TestimonialsSection /> */}
+      <CollegeGallerySection />
+      <ResearchPapersSection />
+      <ReviewSection />
     </>
   );
 };

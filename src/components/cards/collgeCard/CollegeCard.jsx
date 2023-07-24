@@ -4,9 +4,9 @@ import { BsTrophy } from "react-icons/bs";
 
 const CollegeCard = ({ college }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
+    <div className="bg-slate-100 dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden relative pb-12">
       <img
-        className="w-full h-44 object-cover object-center"
+        className="w-full h-52 object-cover object-center"
         src={college.image}
         alt={college.name}
       />
@@ -39,6 +39,9 @@ const CollegeCard = ({ college }) => {
             Sports:
           </span>{" "}
           {college.sports}
+        </div>
+        <div className="absolute right-4 bottom-4">
+          <button className="btn btn-primary btn-sm">View Details</button>
         </div>
       </div>
     </div>

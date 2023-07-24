@@ -113,11 +113,14 @@ const Header = () => {
       </div>
       <div className="navbar-end gap-2">
         <div className="form-control">
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
-          />
+          <label className="input-group">
+            <input
+              type="search"
+              className="input input-bordered"
+              placeholder="Search College"
+            />
+            <span className="dark:bg-slate-800">BTC</span>
+          </label>
         </div>
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
