@@ -10,6 +10,7 @@ import CollegesPage from "../pages/collegesPage/CollegesPage";
 import CollegeDetailsPage from "../pages/collegeDetailsPage/CollegeDetailsPage";
 import AdmissionPage from "../pages/admissionPage/AdmissionPage";
 import MyCollege from "../pages/myCollege/MyCollege";
+import SearchPage from "../pages/searchPage/SearchPage";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,16 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <CollegeDetailsPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "college/search/:keyword",
+        loader: async ({ params }) =>
+          fetch(`${import.meta.env.VITE_API}/college/search/${params.keyword}`),
+        element: (
+          <PrivateRoute>
+            <SearchPage />
           </PrivateRoute>
         ),
       },

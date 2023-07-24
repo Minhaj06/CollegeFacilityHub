@@ -41,7 +41,7 @@ const MyCollege = () => {
       <div className="container">
         <PageHeading heading={college?.name} subheading={`Rating: ${college?.rating}`} />
 
-        {college ? (
+        {college && (
           <div className="my-college-container">
             <div className="flex justify-center">
               <img
@@ -94,10 +94,6 @@ const MyCollege = () => {
                 </p>
               </div>
             </div>
-          </div>
-        ) : (
-          <div className="my-college-not-admitted">
-            <h1 className="my-college-not-admitted-title">You are not admitted yet</h1>
           </div>
         )}
       </div>

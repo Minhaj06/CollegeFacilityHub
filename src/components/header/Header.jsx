@@ -59,6 +59,15 @@ const Header = () => {
       });
   };
 
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const keyword = event.target.elements.search.value;
+
+    // navigate(`/colleges?search=${encodeURIComponent(searchQuery)}`);
+
+    navigate(`/college/search/${keyword}`);
+  };
+
   return (
     <nav className="navbar bg-base-200 py-3 lg:py-4 top-0 left-0 w-full z-[1030] shadow-lg sticky">
       <div className="navbar-start gap-4 lg:gap-0">
@@ -112,18 +121,23 @@ const Header = () => {
         </ul>
       </div>
       <div className="navbar-end gap-2">
-        <div className="form-control">
-          <label className="input-group">
-            <input
-              type="search"
-              className="input input-bordered"
-              placeholder="Search College"
-            />
-            <span className="dark:bg-slate-800 cursor-pointer">
-              <AiOutlineSearch size={22} />
-            </span>
-          </label>
-        </div>
+        <form onSubmit={handleSearch}>
+          <div className="form-control">
+            <label className="input-group">
+              <input
+                type="search"
+                name="search"
+                className="input input-bordered"
+                placeholder="Search College"
+              />
+              <span className="dark:bg-slate-800 cursor-pointer">
+                <button type="submit">
+                  <AiOutlineSearch size={22} />
+                </button>
+              </span>
+            </label>
+          </div>
+        </form>
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             {user?.photoURL ? (
