@@ -1,82 +1,95 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import PageHeading from "../../components/pageHeading/PageHeading";
 import Modal from "../../components/modal/Modal";
+import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../context/auth";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const AdmissionPage = () => {
-  const [selectedCollege, setSelectedCollege] = useState(null);
+  // Context
+  const { user } = useContext(AuthContext);
 
-  const collegesData = [
-    {
-      _id: 1,
-      name: "Example University",
-      rating: 4.8,
-      admissionDate: "September 2023",
-      researchCount: 300,
-      image:
-        "https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1486&q=80",
-      events: "Annual Fest, Guest Lectures, Workshops",
-      researchHistory: "Founded in 1920, 1000+ research projects completed",
-      sports: "Football, Basketball, Volleyball, Swimming",
-    },
-    {
-      _id: 2,
-      name: "Acme College",
-      rating: 4.2,
-      admissionDate: "August 2023",
-      researchCount: 150,
-      image:
-        "https://plus.unsplash.com/premium_photo-1661935732225-0db08b9f659c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
-      events: "Annual Fest, Workshops",
-      researchHistory: "Founded in 1950, 500+ research projects completed",
-      sports: "Football, Tennis, Athletics",
-    },
-    {
-      _id: 3,
-      name: "Northwind Institute",
-      rating: 4.5,
-      admissionDate: "October 2023",
-      researchCount: 250,
-      image:
-        "https://plus.unsplash.com/premium_photo-1661930029003-0404b6e917f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80",
-      events: "Tech Fest, Seminars",
-      researchHistory: "Founded in 1980, 800+ research projects completed",
-      sports: "Cricket, Badminton, Table Tennis",
-    },
-    {
-      _id: 4,
-      name: "Greenwood University",
-      rating: 4.1,
-      admissionDate: "July 2023",
-      researchCount: 180,
-      image:
-        "https://plus.unsplash.com/premium_photo-1661930029003-0404b6e917f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80",
-      events: "Cultural Fest, Conferences",
-      researchHistory: "Founded in 1995, 300+ research projects completed",
-      sports: "Volleyball, Basketball, Swimming",
-    },
-    {
-      _id: 5,
-      name: "Pinecrest College",
-      rating: 4.3,
-      admissionDate: "November 2023",
-      researchCount: 200,
-      image:
-        "https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1486&q=80",
-      events: "Literary Fest, Debates",
-      researchHistory: "Founded in 2000, 400+ research projects completed",
-      sports: "Football, Cricket, Athletics",
-    },
-  ];
+  const [selectedCollege, setSelectedCollege] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    subject: "",
+    email: "",
+    phone: "",
+    dob: "",
+    address: "",
+    image: null,
+  });
+
+  const collegesData = useLoaderData();
 
   const handleCollegeClick = (college) => {
     setSelectedCollege(college);
   };
 
-  const handleSubmit = (event) => {
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  //  const handleImageChange = (event) => {
+  //    const imageFile = event.target.files[0];
+  //    setFormData((prevFormData) => ({
+  //      ...prevFormData,
+  //      image: imageFile,
+  //    }));
+  //  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission here (e.g., send data to backend)
-    // Reset the selected college state after successful form submission
-    setSelectedCollege(null);
+
+    try {
+      // Prepare the form data to send
+      const admissionData = {
+        collegeId: selectedCollege._id,
+        candidateName: user.displayName,
+        subject: formData.subject,
+        email: user.email,
+        phone: formData.phone,
+        dob: formData.dob,
+        address: formData.address,
+        image: user.photoURL,
+      };
+
+      // Make the HTTP POST request to the server
+      const { data } = await axios.post("/admission", admissionData);
+
+      // const response = await fetch("/admission", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(admissionData),
+      // });
+
+      // if (!response.ok) {
+      //   throw new Error("Failed to submit admission form");
+      // }
+
+      // Admission form successfully submitted, reset the form and close the modal
+      setFormData({
+        name: "",
+        subject: "",
+        email: "",
+        phone: "",
+        dob: "",
+        address: "",
+        image: null,
+      });
+      setSelectedCollege(null);
+      toast.success("Admission Successfull");
+    } catch (error) {
+      console.error("Error submitting admission form:", error);
+      // Handle any error or show a notification to the user
+    }
   };
 
   const closeModal = () => {
@@ -95,13 +108,13 @@ const AdmissionPage = () => {
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
           {collegesData.map((college) => (
             <div
-              key={college._id}
+              key={college?._id}
               className="bg-gray-100 border dark:bg-gray-800 p-4 shadow-md rounded-lg"
             >
-              <h3 className="text-xl font-semibold mb-2">{college.name}</h3>
-              <p className="text-gray-600 dark:text-gray-400">Rating: {college.rating}</p>
+              <h3 className="text-xl font-semibold mb-2">{college?.name}</h3>
+              <p className="text-gray-600 dark:text-gray-400">Rating: {college?.rating}</p>
               <p className="text-gray-600 dark:text-gray-400">
-                Admission Date: {college.admissionDate}
+                Admission Date: {college?.admissionDate}
               </p>
 
               <div className="text-end mt-4">
@@ -127,11 +140,15 @@ const AdmissionPage = () => {
               <div className="col-span-1">
                 <div className="form-control w-full max-w-xs">
                   <label className="label">
-                    <span className="label-text">What is your name?</span>
+                    <span className="label-text">Name</span>
                   </label>
                   <input
+                    name="name"
+                    required
+                    onChange={handleChange}
                     type="text"
-                    placeholder="Type here"
+                    readOnly
+                    defaultValue={user?.displayName}
                     className="input input-bordered w-full max-w-xs"
                   />
                 </div>
@@ -143,6 +160,9 @@ const AdmissionPage = () => {
                     <span className="label-text">Subject</span>
                   </label>
                   <input
+                    name="subject"
+                    required
+                    onChange={handleChange}
                     type="text"
                     placeholder="Type here"
                     className="input input-bordered w-full max-w-xs"
@@ -156,8 +176,12 @@ const AdmissionPage = () => {
                     <span className="label-text">Candidate Email</span>
                   </label>
                   <input
+                    name="email"
+                    required
+                    onChange={handleChange}
+                    readOnly
                     type="email"
-                    placeholder="Type here"
+                    defaultValue={user?.email}
                     className="input input-bordered w-full max-w-xs"
                   />
                 </div>
@@ -169,6 +193,9 @@ const AdmissionPage = () => {
                     <span className="label-text">Candidate Phone number</span>
                   </label>
                   <input
+                    name="phone"
+                    required
+                    onChange={handleChange}
                     type="tel"
                     placeholder="Type here"
                     className="input input-bordered w-full max-w-xs"
@@ -181,7 +208,13 @@ const AdmissionPage = () => {
                   <label className="label">
                     <span className="label-text">Date of Birth</span>
                   </label>
-                  <input type="date" className="input input-bordered w-full max-w-xs" />
+                  <input
+                    name="dob"
+                    required
+                    onChange={handleChange}
+                    type="date"
+                    className="input input-bordered w-full max-w-xs"
+                  />
                 </div>
               </div>
 
@@ -190,7 +223,14 @@ const AdmissionPage = () => {
                   <label className="label">
                     <span className="label-text">Image</span>
                   </label>
-                  <input type="file" className="input input-bordered w-full max-w-xs" />
+                  <input
+                    name="image"
+                    required
+                    onChange={handleChange}
+                    type="text"
+                    className="input input-bordered w-full max-w-xs"
+                    defaultValue={user?.photoURL}
+                  />
                 </div>
               </div>
 
@@ -200,6 +240,9 @@ const AdmissionPage = () => {
                     <span className="label-text">Address</span>
                   </label>
                   <textarea
+                    name="address"
+                    required
+                    onChange={handleChange}
                     className="textarea textarea-bordered w-full"
                     placeholder="Type here"
                   ></textarea>
@@ -207,7 +250,11 @@ const AdmissionPage = () => {
               </div>
 
               <div className="col-span-3 text-end">
-                <button type="submit" className="btn btn-primary btn-sm h-10 px-6">
+                <button
+                  onClose={closeModal}
+                  type="submit"
+                  className="btn btn-primary btn-sm h-10 px-6"
+                >
                   Submit
                 </button>
               </div>

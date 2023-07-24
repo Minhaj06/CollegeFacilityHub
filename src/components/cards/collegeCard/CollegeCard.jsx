@@ -1,6 +1,7 @@
 import React from "react";
 import { FaCalendarAlt, FaCalendarCheck, FaGraduationCap, FaRunning } from "react-icons/fa";
 import { BsTrophy } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 const CollegeCard = ({ college }) => {
   return (
@@ -41,7 +42,9 @@ const CollegeCard = ({ college }) => {
           {college.sports}
         </div>
         <div className="absolute right-4 bottom-4">
-          <button className="btn btn-primary btn-sm">View Details</button>
+          <Link to={`/college/${college?._id}`} className="btn btn-primary btn-sm">
+            View Details
+          </Link>
         </div>
       </div>
     </div>

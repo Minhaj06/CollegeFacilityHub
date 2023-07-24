@@ -37,10 +37,13 @@ const router = createBrowserRouter([
       },
       {
         path: "colleges",
+        loader: async () => fetch(`${import.meta.env.VITE_API}/colleges`),
         element: <CollegesPage />,
       },
       {
         path: "college/:id",
+        loader: async ({ params }) =>
+          fetch(`${import.meta.env.VITE_API}/college/${params.id}`),
         element: (
           <PrivateRoute>
             <CollegeDetailsPage />
@@ -49,7 +52,12 @@ const router = createBrowserRouter([
       },
       {
         path: "admission",
-        element: <AdmissionPage />,
+        loader: async () => fetch(`${import.meta.env.VITE_API}/colleges`),
+        element: (
+          <PrivateRoute>
+            <AdmissionPage />
+          </PrivateRoute>
+        ),
       },
     ],
     errorElement: <NotFoundPage />,
