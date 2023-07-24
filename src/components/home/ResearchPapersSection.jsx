@@ -32,7 +32,7 @@ const ResearchPapersSection = () => {
             {researchPapers.map((paper) => (
               <li
                 key={paper._id}
-                className="bg-white border border-gray-300 rounded-md shadow-md p-6 text-center"
+                className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md shadow-md p-6 text-center"
               >
                 <a
                   href={paper.url}
@@ -42,7 +42,7 @@ const ResearchPapersSection = () => {
                 >
                   {paper.title}
                 </a>
-                <p className="text-gray-700 mt-2">{paper.description}</p>
+                <p className="text-gray-700 dark:text-gray-300 mt-2">{paper.description}</p>
               </li>
             ))}
           </ul>

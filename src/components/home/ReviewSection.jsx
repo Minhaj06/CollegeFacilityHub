@@ -54,7 +54,7 @@ const ReviewSection = () => {
           {collegeReviews.map((review) => (
             <div
               key={review._id}
-              className="bg-white border border-gray-300 rounded-lg shadow-md p-6"
+              className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg shadow-md p-6"
             >
               <div className="flex items-center mb-4">
                 <span className="text-blue-500 text-lg font-semibold mr-2">{review.user}</span>
@@ -69,7 +69,7 @@ const ReviewSection = () => {
                   ))}
                 </div>
               </div>
-              <p className="text-gray-700">{review.comment}</p>
+              <p className="text-gray-700 dark:text-gray-300">{review.comment}</p>
             </div>
           ))}
         </div>

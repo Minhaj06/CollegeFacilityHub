@@ -1,5 +1,5 @@
 import React from "react";
-import CollegeCard from "../cards/collgeCard/CollegeCard";
+import CollegeCard from "../cards/collegeCard/CollegeCard";
 import SectionTitle from "../sectionTitle/SectionTitle";
 
 const PopularClassesSection = () => {

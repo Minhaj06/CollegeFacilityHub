@@ -4,20 +4,20 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="bg-base-200 py-16">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="px-3">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
             <Link to="#" className="flex items-center text-3xl font-bold">
-              <span className="text-primary">L</span>Mastery
+              <span className="text-primary">College</span>Hub
             </Link>
-            <p className="mt-4">Unlock your language learning potential</p>
+            <p className="mt-4">Your One-Stop College Facilities Solution</p>
           </div>
 
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
             <h3 className="text-2xl md:text-3xl font-semibold mb-4">Contact Us</h3>
-            <p>123 Main Street, City</p>
-            <p>Phone: (123) 456-7890</p>
-            <p>Email: info@lmastery.com</p>
+            <p>456 College Avenue, Town</p>
+            <p>Phone: (987) 654-3210</p>
+            <p>Email: info@collegefacilityhub.com</p>
           </div>
 
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
         <div className="mt-8 text-center text-sm">
           <p className="text-lg md:text-xl">
-            &copy; {new Date().getFullYear()} LMastery. All rights reserved.
+            &copy; {new Date().getFullYear()} CollegeFacilityHub. All rights reserved.
           </p>
           <p>Terms of Service | Privacy Policy</p>
         </div>

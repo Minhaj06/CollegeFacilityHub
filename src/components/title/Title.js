@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 const Title = ({ title }) => {
-  const siteName = "LanguageMastery";
+  const siteName = "CollegeFacilityHub";
   useEffect(() => {
     if (!title) {
       document.title = siteName;

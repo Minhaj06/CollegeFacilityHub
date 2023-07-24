@@ -60,7 +60,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="navbar bg-base-200 py-3 lg:py-4 fixed top-0 left-0 w-full z-[1030] shadow-lg">
+    <nav className="navbar bg-base-200 py-3 lg:py-4 top-0 left-0 w-full z-[1030] shadow-lg sticky">
       <div className="navbar-start gap-4 lg:gap-0">
         <div className="dropdown">
           <label

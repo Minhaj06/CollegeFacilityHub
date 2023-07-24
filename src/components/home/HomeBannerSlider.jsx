@@ -28,7 +28,7 @@ const slideItems = [
 
 const HomeBannerSlider = () => {
   return (
-    <div className="mt-20">
+    <div>
       <Swiper
         spaceBetween={30}
         pagination={{
