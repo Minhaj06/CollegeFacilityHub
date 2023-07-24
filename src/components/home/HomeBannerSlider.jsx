@@ -1,26 +1,28 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 
-// import required modules
-import { Pagination } from "swiper";
-
 const slideItems = [
   {
-    title: "Learn a New Language Today!",
-    subtitle: "Unlock new opportunities with language proficiency.",
+    title: "College Campus",
+    subtitle: "Discover Our Spacious Campus",
     image:
-      "https://img.freepik.com/free-photo/learn-learning-knowledge-education-college-concept_53876-133560.jpg?w=1380&t=st=1686454577~exp=1686455177~hmac=45cf37b8efd38b6dbb7a0deb6bf8a8baf6d3e4e253eb0cff8967b105dbe12853",
+      "https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1186&q=80",
   },
   {
-    title: "Explore the World of Languages!",
-    subtitle: "Open doors to diverse cultures and endless possibilities.",
+    title: "Academic Excellence",
+    subtitle: "Dedicated Faculty and Top-notch Education",
     image:
-      "https://img.freepik.com/free-photo/english-british-england-language-education-concept_53876-133735.jpg?w=900&t=st=1686455047~exp=1686455647~hmac=933458c83870f5cd3ef2390dd8385ead4102b2dff5dd6b685aca71cad0a24051",
+      "https://images.unsplash.com/photo-1601807576163-587225545555?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1073&q=80",
+  },
+  {
+    title: "Sports Facilities",
+    subtitle: "Stay Fit and Active with Our Sports Facilities",
+    image:
+      "https://images.unsplash.com/photo-1518989229647-6377f907a0b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1174&q=80",
   },
 ];
 
@@ -38,21 +40,12 @@ const HomeBannerSlider = () => {
         {slideItems.map((slideItem, index) => (
           <SwiperSlide key={index}>
             <div
-              className="relative bg-cover bg-center lg:min-h-[30rem] 2xl:min-h-[33rem]"
-              style={{
-                backgroundImage: `url(${slideItem?.image})`,
-              }}
+              className="h-96 max-h-screen w-full bg-cover bg-center"
+              style={{ backgroundImage: `url(${slideItem.image})` }}
             >
-              <div className="container mx-auto px-4 py-24 flex flex-col items-center justify-center">
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-error text-center">
-                  {slideItem?.title}
-                </h1>
-                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mt-6 text-white font-semibold text-center">
-                  {slideItem?.subtitle}
-                </p>
-                <button className="bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 mt-8 rounded-full">
-                  Get Started
-                </button>
+              <div className="flex flex-col items-center justify-center h-full bg-opacity-40 bg-white  text-black px-6">
+                <h3 className="text-4xl font-bold">{slideItem.title}</h3>
+                <p className="mt-2 text-xl">{slideItem.subtitle}</p>
               </div>
             </div>
           </SwiperSlide>

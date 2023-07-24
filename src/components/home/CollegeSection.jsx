@@ -1,68 +1,51 @@
 import React from "react";
-import { BsClock, BsCalendar, BsFileText, BsTrophy } from "react-icons/bs";
+import CollegeCard from "../cards/collgeCard/CollegeCard";
+import SectionTitle from "../sectionTitle/SectionTitle";
 
-const CollegeSection = () => {
-  const colleges = [
+const PopularClassesSection = () => {
+  const collegeData = [
     {
-      name: "ABC University",
-      image: "college1.jpg",
-      admissionDates: "July 25 - August 15",
-      events: 15,
-      researchHistory: "Established in 1965",
-      sports: "Football, Basketball, Tennis",
+      _id: 1,
+      name: "Example College 1",
+      image:
+        "https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1486&q=80",
+      admissionDates: "August 2023",
+      events: "Annual Fest, Sports Meet",
+      researchHistory: "Established in 1950",
+      sports: "Football, Basketball, Swimming",
     },
     {
-      name: "XYZ College",
-      image: "college2.jpg",
-      admissionDates: "August 1 - August 30",
-      events: 10,
-      researchHistory: "Founded in 1978",
-      sports: "Soccer, Volleyball, Swimming",
+      _id: 2,
+      name: "Example College 2",
+      image:
+        "https://plus.unsplash.com/premium_photo-1661935732225-0db08b9f659c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80",
+      admissionDates: "September 2023",
+      events: "Tech Symposium, Cultural Fest",
+      researchHistory: "Pioneering Research in Science",
+      sports: "Cricket, Volleyball, Table Tennis",
     },
     {
-      name: "PQR Institute",
-      image: "college3.jpg",
-      admissionDates: "September 1 - September 20",
-      events: 8,
-      researchHistory: "Founded in 1990",
-      sports: "Cricket, Badminton, Athletics",
+      _id: 3,
+      name: "Example College 3",
+      image:
+        "https://plus.unsplash.com/premium_photo-1661930029003-0404b6e917f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80",
+      admissionDates: "July 2023",
+      events: "Literary Fest, Debate Competition",
+      researchHistory: "Leading in Arts and Humanities",
+      sports: "Tennis, Badminton, Athletics",
     },
   ];
 
   return (
-    <section className="py-12 bg-base-100 dark:bg-base-700">
-      <div className="container mx-auto">
-        <h2 className="text-3xl font-semibold text-gray-800 dark:text-white mb-6">
-          Explore Colleges
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {colleges.map((college, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-              <img
-                src={`/images/${college.image}`}
-                alt={college.name}
-                className="w-full h-48 object-cover rounded-md mb-4"
-              />
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-                {college.name}
-              </h3>
-              <div className="flex items-center text-gray-600 dark:text-gray-400 mb-2">
-                <BsCalendar className="mr-2" />
-                <span>{college.admissionDates}</span>
-              </div>
-              <div className="flex items-center text-gray-600 dark:text-gray-400 mb-2">
-                <BsClock className="mr-2" />
-                <span>{college.events} Events</span>
-              </div>
-              <div className="flex items-center text-gray-600 dark:text-gray-400 mb-2">
-                <BsFileText className="mr-2" />
-                <span>{college.researchHistory}</span>
-              </div>
-              <div className="flex items-center text-gray-600 dark:text-gray-400">
-                <BsTrophy className="mr-2" />
-                <span>{college.sports}</span>
-              </div>
-            </div>
+    <section className="py-20">
+      <div className="container">
+        <SectionTitle
+          heading="Our Colleges"
+          subheading="Explore Our Top Colleges and Universities"
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          {collegeData.map((college) => (
+            <CollegeCard key={college?._id} college={college} />
           ))}
         </div>
       </div>
@@ -70,4 +53,4 @@ const CollegeSection = () => {
   );
 };
 
-export default CollegeSection;
+export default PopularClassesSection;

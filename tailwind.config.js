@@ -3,7 +3,12 @@ export default {
   darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      container: {
+        center: true,
+        padding: "0.75rem",
+      },
+    },
   },
   daisyui: {},
   plugins: [require("daisyui")],
